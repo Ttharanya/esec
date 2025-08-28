@@ -1,0 +1,121 @@
+:root {
+  --bg: #ffffff;
+  --panel: #f6f6f7;
+  --muted: #eeeeef;
+  --text: #0a0a0a;
+  --subtext: #4a4a4a;
+  --accent: #0a0a0a;
+  --border: #e4e4e7;
+}
+
+* { box-sizing: border-box; }
+html, body, #app { height: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+}
+
+.layout {
+  display: grid;
+  grid-template-rows: 56px 1fr auto;
+  height: 100%;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 56px;
+  padding: 0 16px;
+  border-bottom: 1px solid var(--border);
+  background: linear-gradient(180deg, #ffffff, #fafafa 60%);
+}
+.brand {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  font-weight: 700;
+}
+.brand-logo { width: 36px; height: 36px; object-fit: contain; }
+.brand-title { color: var(--accent); letter-spacing: 0.2px; font-size: 14px; }
+
+.nav-right-title { color: var(--subtext); font-size: 12px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-left: auto; margin-right: 10px; text-align: right; }
+.actions { display: flex; gap: 10px; }
+.btn {
+  appearance: none; border: 1px solid var(--border); color: var(--text);
+  background: var(--panel); height: 34px; padding: 0 12px; border-radius: 8px;
+  cursor: pointer; transition: background .15s, border-color .15s;
+}
+.btn:hover { background: var(--muted); border-color: #d4d4d8; }
+
+.content { display: grid; grid-template-columns: 280px 1fr; min-height: 0; }
+
+.sidebar {
+  border-right: 1px solid var(--border);
+  background: #ffffff;
+  padding: 12px;
+  overflow: auto;
+}
+.session-header { font-size: 12px; color: var(--subtext); padding: 6px 6px 8px; }
+.session-list { display: flex; flex-direction: column; gap: 8px; }
+.session-item {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 8px; padding: 10px 12px; border: 1px solid var(--border); border-radius: 10px;
+  background: var(--panel); cursor: pointer;
+}
+.session-item.active { outline: 2px solid #2b2b2b; }
+.session-title { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+.chat {
+  display: grid; grid-template-rows: 1fr auto; min-height: 0;
+}
+.messages {
+  overflow: auto; padding: 24px; display: flex; flex-direction: column; gap: 14px;
+}
+.bubble { display: grid; grid-template-columns: 36px 1fr; gap: 12px; }
+.avatar { width: 36px; height: 36px; border-radius: 8px; background: var(--muted); display: grid; place-items: center; font-size: 14px; color: var(--subtext); }
+.role-assistant .avatar { background: #0f172a; color: #fff; }
+.role-user .avatar { background: #f5f5f5; color: #0a0a0a; }
+
+.bubble-body { border: 1px solid var(--border); background: var(--panel); border-radius: 12px; padding: 12px 14px; }
+.bubble-body pre { margin: 8px 0; padding: 10px; background: #f3f4f6; border: 1px solid #e5e7eb; border-radius: 8px; overflow: auto; }
+
+.composer { border-top: 1px solid var(--border); padding: 12px 16px; background: linear-gradient(180deg, #ffffff, #ffffff); }
+.composer-inner {
+  display: grid; grid-template-columns: 1fr auto; gap: 10px;
+  border: 1px solid var(--border); border-radius: 12px; background: var(--panel);
+}
+textarea.input {
+  background: transparent; color: var(--text); border: none; outline: none;
+  resize: none; padding: 12px; min-height: 52px; max-height: 200px; font-size: 15px;
+}
+.send {
+  display: flex; align-items: center; gap: 8px;
+  padding: 0 10px;
+}
+.send .btn { height: 40px; border-radius: 10px; }
+.send #mic.recording { border-color: #b91c1c; background: #3f1212; color: #fff; }
+
+.empty-state { color: var(--subtext); text-align: center; margin-top: 10vh; }
+
+.footer { color: var(--subtext); font-size: 12px; text-align: center; padding: 10px; border-top: 1px solid var(--border); background: #fff; }
+
+/* Mobile drawer */
+.backdrop { position: fixed; inset: 56px 0 0 0; background: rgba(0,0,0,.25); backdrop-filter: blur(1px); display: none; z-index: 15; }
+
+@media (max-width: 900px) {
+  .content { grid-template-columns: 1fr; }
+  .nav-right-title { display: none; }
+  .sidebar { 
+    position: fixed; top: 56px; bottom: 0; left: 0; width: 85vw; max-width: 320px;
+    transform: translateX(-100%);
+    transition: transform .2s ease;
+    z-index: 20;
+  }
+  .layout.sidebar-open .sidebar { transform: translateX(0); }
+  .layout.sidebar-open .backdrop { display: block; }
+}
+
+
