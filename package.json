@@ -15,11 +15,11 @@
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
-    "node-fetch": "^3.3.2"
+    "node-fetch": "^3.3.2",
+    "vite": "^5.4.2"          // ✅ moved here
   },
   "devDependencies": {
     "concurrently": "^8.2.2",
-    "vite": "^5.4.2",
     "nodemon": "^3.1.0"
   }
 }
