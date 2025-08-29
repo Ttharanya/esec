@@ -3,13 +3,13 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
-"scripts": {
-  "start": "node server/index.js",
-  "build": "cd client && npm install && npm run build",
-  "dev": "concurrently \"npm:dev:server\" \"npm:dev:client\"",
-  "dev:server": "cd server && npm run dev",
-  "dev:client": "cd client && npm start"
-},
+  "scripts": {
+    "start": "node server/index.js",
+    "build": "vite build",
+    "dev": "concurrently \"npm:dev:server\" \"npm:dev:client\"",
+    "dev:server": "nodemon server/index.js",
+    "dev:client": "vite"
+  },
   "dependencies": {
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
@@ -19,7 +19,8 @@
   },
   "devDependencies": {
     "concurrently": "^8.2.2",
-    "vite": "^5.4.2"
+    "vite": "^5.4.2",
+    "nodemon": "^3.1.0"
   }
 }
 
