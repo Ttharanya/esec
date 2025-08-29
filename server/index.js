@@ -51,15 +51,18 @@ app.post("/api/chat", async (req, res) => {
 });
 
 // ============================
-// ✅ Serve Frontend (Vite build)
+// ✅ Serve Frontend (without dist)
 // ============================
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-app.use(express.static(path.join(__dirname, "../dist")));
+// Serve static files from root (index.html) and src/
+app.use(express.static(path.join(__dirname, "../")));
+app.use(express.static(path.join(__dirname, "../src")));
 
+// Fallback route → always serve index.html
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "../dist/index.html"));
+  res.sendFile(path.join(__dirname, "../index.html"));
 });
 
 // Start server
