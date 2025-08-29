@@ -5,7 +5,7 @@
   "type": "module",
 "scripts": {
   "start": "node server/index.js",
-  "build": "cd client && npm install && npm run build && cd ..",
+  "build": "npm run build --prefix server",
   "dev": "concurrently \"npm:dev:server\" \"npm:dev:client\"",
   "dev:server": "cd server && npm run dev",
   "dev:client": "cd client && npm start"
